@@ -1,16 +1,12 @@
 
 import javax.swing.*;
-
-//import javax.media.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
 import javax.media.*;
-
 
 class  Player extends JFrame implements ActionListener, ControllerListener
 {
@@ -60,8 +56,8 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 		Slider=new JSlider(SwingConstants.HORIZONTAL, 0,100,0);
 		tf=new JTextField(3);
 		played_time_for_pause=new Time(0.0);
-
 	}
+
 	public void player_gui()
 	{	
 		//how buttons arranged
@@ -90,6 +86,7 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 		Pause.addActionListener(this);
 
 	}
+
 	public File open()
 	{
 		//JFileChooser provides a simple mechanism for the user to choose a file. For information about using JFileChooser, see How to Use File Choosers, a section in The Java Tutorial. 
@@ -100,8 +97,8 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 		chooser.showOpenDialog(this);
 		//Returns the selected file. This can be set either by the programmer via setSelectedFile or by a user action, such as either typing the filename into the UI or selecting the file from a list in the UI.
 		return chooser.getSelectedFile();
-
 	}
+
 	public void displayrate()
 	{
 		long player_time=created_player.getMediaNanoseconds()/1000000000;
@@ -113,11 +110,13 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 		slider_value=(int)((played_time*100)/Total_Time);
 		Slider.setValue(slider_value);
 	}
+
 	public void Reminder()
 	{
 		timer=new java.util.Timer();
 		timer.scheduleAtFixedRate(new RemindTask(),1000,1);
 	}
+
 	class RemindTask extends java.util.TimerTask
 	{
 		public void run()
@@ -126,7 +125,6 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 			timer.cancel();
 		}
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
@@ -141,8 +139,6 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 			{
 				fx.printStackTrace();
 			}
-
-
 		}
 		if(e.getSource()==Play)
 		{
@@ -177,11 +173,9 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 			created_player.deallocate();
 			played_time_for_pause=new Time(0.0);
 			player_started=0;
-
 		}
 		if(e.getSource()==Fast_Forward)
 		{
-
 			forward_rate+=.5f;
 			created_player.setRate(forward_rate);
 		}
@@ -200,7 +194,6 @@ class  Player extends JFrame implements ActionListener, ControllerListener
 				Content.add(comp, BorderLayout.CENTER, 1);
 			//resize window as per its components
 			pack();   
-
 		}
 	} 
 
